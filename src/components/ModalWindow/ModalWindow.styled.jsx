@@ -1,18 +1,17 @@
 import styled from "styled-components"
 
 export const Modal = styled.div`
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translate(-50%) rotateX(0);
+    transition: transform 250ms linear;
     border-radius: 12px;
     border: 1px solid rgba(239, 237, 232, 0.2);
     background: #10100f;
     max-width: 335px;
     width: calc(100% - 40px);
-    /* min-height: 280px; */
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     padding: 32px;
-    /* overflow-y: auto;  */
 
     background: #efefbb; /* fallback for old browsers */
     background: -webkit-linear-gradient(
@@ -32,9 +31,11 @@ export const Modal = styled.div`
         /* height: 286px; */
     }
 `;
+
 export const WrapIcon = styled.div`
     position: relative;
-`
+`;
+
 export const CloseButton = styled.svg`
     stroke: var(--color-text);
     padding: 0;

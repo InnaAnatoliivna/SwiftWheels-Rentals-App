@@ -41,6 +41,8 @@ code {
   --color-text: #121417;
   --color-text-light: #fff;
   --color-subtext: rgba(18, 20, 23, 0.5);
+  --color-logo: rgb(6, 0, 62);
+  --color-hero: #efefbb;
 }
 
 h1,

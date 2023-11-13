@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Backdrop = ({ onClick, children }) => {
     return (
@@ -11,6 +10,7 @@ const Backdrop = ({ onClick, children }) => {
                 height: '100%',
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 zIndex: 100,
+                overflow: 'auto'
             }}
             onClick={onClick}
         >
