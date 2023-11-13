@@ -1,51 +1,44 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, NavLink } from "react-router-dom"
+import styled from "styled-components"
 
-export const HeaderContainer = styled.div`
-  padding: 10px;
+export const Section = styled.div`
+    height: 78px;
+    background: #004FF9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFF94C, #004FF9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFF94C, #004FF9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin-bottom: 40px;
 `;
 
-export const Navigation = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const LinkStyled = styled(NavLink)`
+    padding: 24.5px 8px;
+    color: #fffc00;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: color linear 500ms;
+    &:hover {
+        color: #fff;
+    }
+    &.active {
+        border-bottom: 3px solid #fffc00;
+    }
 `;
 
-export const StyledLink = styled(Link)`
-  padding: 8px 16px;
-  color: #ffffff; /* White text color */
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
-  transition:
-    color 0.3s,
-    text-shadow 0.3s;
+export const LinkLogo = styled(Link)`
+        text-decoration: none;
+        color: var(--color-accent);
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 1;`;
 
-  &:hover,
-  &:focus {
-    color: #00baff; /* Blue text color on hover/focus */
-    text-shadow:
-      0 0 5px #00baff,
-      0 0 10px #00baff,
-      0 0 20px #00baff,
-      0 0 40px #00baff,
-      0 0 80px #00baff;
-  }
-`;
-
-export const IconWrapper = styled.svg`
-  width: ${(props) => props.size || '12px'};
-  height: ${(props) => props.size || '12px'};
-  fill: ${(props) => props.color || '#ffffff'};
-  display: inline-block;
-  margin-right: 5px;
-  box-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
+export const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    nav {
+        display: flex;
+        gap: 22px;
+        margin-left: auto;
+    }
+    /* p {
+    } */
 `;
