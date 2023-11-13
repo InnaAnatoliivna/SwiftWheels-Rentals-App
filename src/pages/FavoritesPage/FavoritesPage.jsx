@@ -51,33 +51,33 @@ const FavoritesPage = () => {
     //     setAdverts(carItems);
     // }, []);
 
-    const getCarData = useCallback(async (id) => {
-        try {
-            const data = await getCarById(id);
-            setAdverts((prev) => {
-                if (!prev.some((item) => item.id === data.id)) {
-                    return [...prev, data];
-                }
-                return prev;
-            });
-        } catch (error) {
-            console.error(error.message);
-        }
-    }, []);
+    // const getCarData = useCallback(async (id) => {
+    //     try {
+    //         const data = await getCarById(id);
+    //         setAdverts((prev) => {
+    //             if (!prev.some((item) => item.id === data.id)) {
+    //                 return [...prev, data];
+    //             }
+    //             return prev;
+    //         });
+    //     } catch (error) {
+    //         console.error(error.message);
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const carItems = await Promise.all(
-                getFavoritiesId.map((element) => {
-                    const foundItem = dataAdverts.find((item) => item.id === element);
-                    return foundItem || getCarData(element);
-                })
-            );
-            setAdverts(carItems.filter(Boolean));
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const carItems = await Promise.all(
+    //             getFavoritiesId.map((element) => {
+    //                 const foundItem = dataAdverts.find((item) => item.id === element);
+    //                 return foundItem || getCarData(element);
+    //             })
+    //         );
+    //         setAdverts(carItems.filter(Boolean));
+    //     };
 
-        fetchData();
-    }, [dataAdverts, getCarData, getFavoritiesId]);
+    //     fetchData();
+    // }, [dataAdverts, getCarData, getFavoritiesId]);
 
 
     return (
