@@ -1,4 +1,4 @@
-import{s as n,j as t,a as o,r as i,C as l,L as u,f as g,b as p}from"./index-21708812.js";import{u as x,s as f,a as m,b as v,A as h}from"./AdvertsList-780aa350.js";import{B as j}from"./Button-c036df31.js";const L=n.div`
+import{s as n,j as t,a as o,r as i,C as l,L as u,f as g,b as p}from"./index-1f7298b6.js";import{u as x,s as f,a as m,b as v,A as h}from"./AdvertsList-dbb18337.js";import{B as j}from"./Button-4c81f109.js";const L=n.div`
     /* margin: 0 auto; */
     display: flex;
     justify-content: center;
