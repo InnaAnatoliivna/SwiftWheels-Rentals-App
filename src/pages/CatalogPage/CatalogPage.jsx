@@ -6,24 +6,27 @@ import {
     selectAdverts,
     selectCurrentPage,
     // selectErrorAdverts,
-    selectLoadingAdverts
+    selectLoadingAdverts,
+    selectPerPage
 } from '../../redux/selectors'
 import { fetchLimitedAdverts } from '../../redux/operations'
 import Loading from '../../components/Loading/Loading'
-import { setCurrentPage } from '../../redux/reducers/paginationSlice'
-import { LoadMoreStyled } from './CatalogPage.styled'
+import { setCurrentPage } from '../../redux/reducers/advertsSlice'
+// import { LoadMoreStyled } from './CatalogPage.styled'
+import LoadMoreButton from '../../components/LoadMore/LoadMore'
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
     const isLoader = useSelector(selectLoadingAdverts);
-    // const errorAdverts = useSelector(selectErrorAdverts)
+    // const errorAdverts = useSelector(selectErrorAdverts);
     const currentPage = useSelector(selectCurrentPage);
+    const perPage = useSelector(selectPerPage);
 
     useEffect(() => {
         const getDataAdverts = async () => {
             try {
-                await dispatch(fetchLimitedAdverts());
+                await dispatch(fetchLimitedAdverts())
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
@@ -34,8 +37,7 @@ const CatalogPage = () => {
     const onLoadMore = async () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
-    console.log('NEXT ADVERS :', dataAdverts)
-
+    const isLastPage = dataAdverts.length < currentPage * perPage;
 
     return (
         <Container>
@@ -43,7 +45,7 @@ const CatalogPage = () => {
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
-                    {currentPage < 3 && <LoadMoreStyled onLoadMore={onLoadMore} />}
+                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
             }
         </Container>

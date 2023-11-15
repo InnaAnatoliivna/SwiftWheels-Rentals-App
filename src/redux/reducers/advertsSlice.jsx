@@ -7,7 +7,6 @@ const initialState = {
     error: null,
     currentPage: 1,
     perPage: 12,
-
 };
 
 const advertsSlice = createSlice({

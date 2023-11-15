@@ -17,11 +17,6 @@ export const selectFavoritiesID = state => state.favorities.favorities;
 export const selectFilter = state => state.filter;
 
 
-// pagination
-
-// export const selectCurrentPage = state => state.pagination.currentPage;
-// export const selectPerPage = state => state.pagination.perPage;
-
 // modal
 
 export const selectIsOpenModal = state => state.modal.isOpen;

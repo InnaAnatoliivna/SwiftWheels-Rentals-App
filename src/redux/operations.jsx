@@ -10,9 +10,8 @@ axios.defaults.baseURL = 'https://654e9f03cbc3253557430564.mockapi.io';
  */
 export const fetchLimitedAdverts = createAsyncThunk('adverts/fetchAll', async (_, thunkAPI) => {
     try {
-        const { pagination } = thunkAPI.getState();
-        const { currentPage, perPage } = pagination;
-
+        const { adverts } = thunkAPI.getState();
+        const { currentPage, perPage } = adverts;
         const { data } = await axios.get(`/adverts?page=${currentPage}&limit=${perPage}`);
         return data;
     } catch (error) {
