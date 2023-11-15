@@ -1,28 +1,32 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Container from '../../components/Container/Container'
 import AdvertsList from '../../components/AdvertsList/AdvertsList'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     selectAdverts,
     selectCurrentPage,
-    selectLoadingAdverts
+    // selectErrorAdverts,
+    selectLoadingAdverts,
+    selectPerPage
 } from '../../redux/selectors'
-import { fetchAdverts } from '../../redux/operations'
+import { fetchLimitedAdverts } from '../../redux/operations'
 import Loading from '../../components/Loading/Loading'
-// import LoadMoreButton from '../../components/LoadMore/LoadMore'
-import { setCurrentPage } from '../../redux/reducers/paginationSlice'
-import { LoadMoreStyled } from './CatalogPage.styled'
+import { setCurrentPage } from '../../redux/reducers/advertsSlice'
+// import { LoadMoreStyled } from './CatalogPage.styled'
+import LoadMoreButton from '../../components/LoadMore/LoadMore'
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
     const isLoader = useSelector(selectLoadingAdverts);
+    // const errorAdverts = useSelector(selectErrorAdverts);
     const currentPage = useSelector(selectCurrentPage);
+    const perPage = useSelector(selectPerPage);
 
     useEffect(() => {
         const getDataAdverts = async () => {
             try {
-                await dispatch(fetchAdverts())
+                await dispatch(fetchLimitedAdverts())
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
@@ -33,8 +37,7 @@ const CatalogPage = () => {
     const onLoadMore = async () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
-    // console.log('NEXT ADVERS :', dataAdverts)
-
+    const isLastPage = dataAdverts.length < currentPage * perPage;
 
     return (
         <Container>
@@ -42,7 +45,7 @@ const CatalogPage = () => {
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
-                    {currentPage < 3 && <LoadMoreStyled onLoadMore={onLoadMore} />}
+                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
             }
         </Container>

@@ -1,7 +1,10 @@
-import React from 'react'
 import { nanoid } from 'nanoid'
 import Button from '../Button/Button'
 import { FlexList, WrappImg, Wrapper } from './AdvertsContent.styled'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectFavoritiesID } from '../../redux/selectors';
+import AddToFavoritesButton from '../AddToFavoritesButton/AddToFavoritesButton';
 // import { useSelector } from 'react-redux'
 // import { selectLoadingAdverts } from '../../redux/selectors'
 // import Loading from '../Loading/Loading'
@@ -18,6 +21,18 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
         id,
         functionalities
     } = advert;
+
+    const getFavorotesID = useSelector(selectFavoritiesID)
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    useEffect(() => {
+        const isAddedToFvrts = getFavorotesID.find(id => advert.id === id);
+        if (isAddedToFvrts) {
+            setIsFavorite(true)
+        } else {
+            setIsFavorite(false)
+        };
+    }, [advert, getFavorotesID])
 
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
@@ -48,6 +63,10 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
                 <li key={nanoid()}>{shortestFunctionality}</li>
             </FlexList>
             <Button onClick={handleLearnMoreClick}>Learn more</Button>
+            <AddToFavoritesButton
+                advertId={advert.id}
+                isFavorite={isFavorite}
+            />
         </Wrapper>
     )
 }
