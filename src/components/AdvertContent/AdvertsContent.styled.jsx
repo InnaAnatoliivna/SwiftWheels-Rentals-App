@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div`
 p {
+    position: relative;
     color: #121417;
     font-size: 16px;
     font-weight: 500;

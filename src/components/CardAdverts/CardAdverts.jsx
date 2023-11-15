@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card } from './CardAdverts.styled';
 
 const CardAdverts = ({ children }) => {

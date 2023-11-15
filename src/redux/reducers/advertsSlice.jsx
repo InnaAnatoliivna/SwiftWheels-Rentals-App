@@ -1,28 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchAdverts } from '../operations'
+import { fetchLimitedAdverts } from '../operations'
 
 const initialState = {
     items: [],
     isLoading: false,
-    error: null
+    error: null,
+    currentPage: 1,
+    perPage: 12,
+
 };
 
 const advertsSlice = createSlice({
     name: 'adverts',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
+        },
+        setPerPage: (state, action) => {
+            state.perPage = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchAdverts.pending, (state) => {
+            .addCase(fetchLimitedAdverts.pending, (state) => {
                 state.isLoading = true;
             })
             //
-            .addCase(fetchAdverts.rejected, (state, action) => {
+            .addCase(fetchLimitedAdverts.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })
             //
-            .addCase(fetchAdverts.fulfilled, (state, action) => {
+            .addCase(fetchLimitedAdverts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
                 // console.log('adverts-fullfield :', action.payload);
@@ -41,4 +51,5 @@ const advertsSlice = createSlice({
     }
 });
 
+export const { setCurrentPage, setPerPage } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;

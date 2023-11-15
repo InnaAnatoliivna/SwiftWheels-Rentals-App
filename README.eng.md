@@ -1,6 +1,7 @@
 # SwiftWheels-Rentals App
 
-This is a web application for a company providing car rental services in Ukraine. The application is divided into three main pages.
+This is a web application for a company providing car rental services in
+Ukraine. The application is divided into three main pages.
 
 ## Overview of Pages
 
@@ -31,7 +32,7 @@ This is a web application for a company providing car rental services in Ukraine
 
 1. Clone the repository.
 2. Install necessary dependencies: `npm install`.
-3. Start the project: `npm start`.
+3. Start the project: `npm run dev`.
 4. Open the browser at [http://localhost:3000](http://localhost:3000).
 
 ## Additional Features
@@ -41,7 +42,7 @@ This is a web application for a company providing car rental services in Ukraine
 
 ## Demo
 
-[The application is available here](deployment_link).
+[The application is available here](https://innaanatoliivna.github.io/SwiftWheels-Rentals-App/).
 
 ---
 

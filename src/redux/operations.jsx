@@ -8,7 +8,7 @@ axios.defaults.baseURL = 'https://654e9f03cbc3253557430564.mockapi.io';
 /*
  * GET @ /adverts/fetchAll
  */
-export const fetchAdverts = createAsyncThunk('adverts/fetchAll', async (_, thunkAPI) => {
+export const fetchLimitedAdverts = createAsyncThunk('adverts/fetchAll', async (_, thunkAPI) => {
     try {
         const { pagination } = thunkAPI.getState();
         const { currentPage, perPage } = pagination;
@@ -20,43 +20,11 @@ export const fetchAdverts = createAsyncThunk('adverts/fetchAll', async (_, thunk
     }
 });
 
-// export const getCarItems = async () => {
-//     const { data } = await axios.get('/advert');
-//     return data;
-// };
-
-
-export const getCarById = async (id) => {
-    const params = { id };
-    const { data } = await axios.get(`/advert/`, { params });
-    return data[0];
+export const fetchAllAdverts = async () => {
+    try {
+        const { data } = await axios.get('/adverts');
+        return data;
+    } catch (error) {
+        console.log(error.message);
+    }
 };
-
-
-/*
- * POST @ /adverts/favorites
- * advert: { id, year, make, model, type, img, description, fuelConsumption,
- * engineSize, accessories, functionalities, rentalPrice, rentalCompany,
- * address, rentalConditions, mileage }
- */
-// export const addFavorite = createAsyncThunk('adverts/addFavorites', async (advert, thunkAPI) => {
-//     try {
-//         const { data } = await axios.post('/favorites', advert);
-//         return data;
-//     } catch (error) {
-//         return thunkAPI.rejectWithValue(error.message);
-//     }
-// });
-/*
- * DELETE @ /adverts/deleteAdverts
- * idAdverts: string
- */
-
-// export const deleteFavorite = createAsyncThunk('adverts/deleteAdverts', async (idAdverts, thunkAPI) => {
-//     try {
-//         const { data } = await axios.delete(`/favorites/${idAdverts}`);
-//         return data;
-//     } catch (error) {
-//         return thunkAPI.rejectWithValue(error.message);
-//     }
-// });
