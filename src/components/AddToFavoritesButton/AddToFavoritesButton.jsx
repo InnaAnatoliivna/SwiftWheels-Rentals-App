@@ -13,7 +13,7 @@ const AddToFavoritesButton = ({ advertId, isFavorite }) => {
     const [isCliсkedButton, setIsClikedButton] = useState(false);
 
     const handleClick = id => {
-        const favorite = dataAdverts.find(advert => advert.id === id);
+        const favorite = dataAdverts?.find(advert => advert.id === id);
         if (!isCliсkedButton) {
             if (isFavorite) {
                 setIsClikedButton(false);

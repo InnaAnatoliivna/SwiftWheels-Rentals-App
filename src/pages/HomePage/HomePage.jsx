@@ -1,4 +1,3 @@
-import React from 'react'
 import Container from '../../components/Container/Container'
 import Button from '../../components/Button/Button'
 import { Section, Wrapper } from './HomePage.styled'

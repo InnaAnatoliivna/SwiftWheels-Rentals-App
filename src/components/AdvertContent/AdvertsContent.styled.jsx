@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 export const Wrapper = styled.div`
 p {
     position: relative;
@@ -27,11 +28,12 @@ export const WrappImg = styled.div`
     border: 0.1px solid transparent;
     border-radius: 14px;
     overflow: hidden;
-img { 
-    display: block;
-    max-width: 100%;
-    height: 100%;
-    object-fit:cover;}
+    img { 
+        display: block;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
     &::before {
         content: '';
         position: absolute;
