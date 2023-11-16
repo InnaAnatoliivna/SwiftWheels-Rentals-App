@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import CardAdverts from '../../components/CardAdverts/CardAdverts'
 import AdvertContent from '../../components/AdvertContent/AdvertContent'
-// import AddToFavoritesButton from '../AddToFavoritesButton/AddToFavoritesButton'
-// import { useSelector } from 'react-redux'
-// import { selectAdverts } from '../../redux/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Wrapper } from './AdvertsList.styled'
 import ModalWindow from '../ModalWindow/ModalWindow'
@@ -32,9 +29,6 @@ const AdvertsList = ({ adverts }) => {
                                 advert={item}
                                 handleOpenModal={handleOpenModal}
                             />
-                            {/* <AddToFavoritesButton
-                                advertId={item.id}
-                            /> */}
                         </CardAdverts>
                     </Wrapper>)
             })}

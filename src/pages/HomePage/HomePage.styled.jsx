@@ -9,20 +9,6 @@ export const Section = styled.div`
         url(${heroImage});
     background-size: cover;
     background-repeat: no-repeat;
-    /* &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            180deg,
-            rgba(18, 20, 23, 0.50) 2.5%,
-            rgba(18, 20, 23, 0.00) 41.07%
-        );
-        border-radius: 14px;
-    } */
 `
 
 export const Wrapper = styled.div`
