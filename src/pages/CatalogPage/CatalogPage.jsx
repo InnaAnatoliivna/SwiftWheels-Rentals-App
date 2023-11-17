@@ -20,6 +20,8 @@ const CatalogPage = () => {
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
 
+    console.log('before useEffect ')
+
     useEffect(() => {
         const getDataAdverts = async () => {
             try {
@@ -31,10 +33,14 @@ const CatalogPage = () => {
         getDataAdverts();
     }, [dispatch, currentPage]);
 
+    console.log('after useEffect ')
+
     const onLoadMore = async () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
     const isLastPage = dataAdverts?.length < currentPage * perPage;
+
+    console.log('last useEffect ')
 
     return (
         <Container>
