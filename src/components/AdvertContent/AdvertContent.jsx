@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid'
 import Button from '../Button/Button'
 import { FlexList, WrappImg, Wrapper } from './AdvertsContent.styled'
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectFavoritiesID } from '../../redux/selectors';
-import AddToFavoritesButton from '../AddToFavoritesButton/AddToFavoritesButton';
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectFavoritiesID } from '../../redux/selectors'
+import AddToFavoritesButton from '../AddToFavoritesButton/AddToFavoritesButton'
+import defaultImage from '../../images/Car-Hire-Online.jpg'
 // import { useSelector } from 'react-redux'
 // import { selectLoadingAdverts } from '../../redux/selectors'
 // import Loading from '../Loading/Loading'
@@ -26,8 +27,8 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        if (advert) {
-            const isAddedToFvrts = getFavorotesID?.find(farId => id === farId);
+        if (advert && getFavorotesID.length > 0) {
+            const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
             if (isAddedToFvrts) {
                 setIsFavorite(true)
             } else {
@@ -39,6 +40,7 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
     }, functionalities[0]);
+    console.log(shortestFunctionality)
 
     const addressString = advert.address;
     const addressParts = addressString.split(',').map(part => part.trim());
@@ -51,7 +53,7 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     return (
         <Wrapper>
-            <WrappImg><img src={img} alt='rental car' /></WrappImg>
+            <WrappImg><img src={img ? img : defaultImage} alt={`${make} ${model}, ${year}`} /></WrappImg>
             <p>{make}<span className='accent'>{model},</span>{year}
                 <span className='price'>{rentalPrice}</span>
             </p>
