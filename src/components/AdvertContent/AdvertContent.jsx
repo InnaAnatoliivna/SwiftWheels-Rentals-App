@@ -26,12 +26,14 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        const isAddedToFvrts = getFavorotesID.find(id => advert.id === id);
-        if (isAddedToFvrts) {
-            setIsFavorite(true)
-        } else {
-            setIsFavorite(false)
-        };
+        if (advert) {
+            const isAddedToFvrts = getFavorotesID.find(id => advert.id === id);
+            if (isAddedToFvrts) {
+                setIsFavorite(true)
+            } else {
+                setIsFavorite(false)
+            };
+        }
     }, [advert, getFavorotesID])
 
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
