@@ -27,7 +27,7 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     useEffect(() => {
         if (advert) {
-            const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
+            const isAddedToFvrts = getFavorotesID?.find(farId => id === farId);
             if (isAddedToFvrts) {
                 setIsFavorite(true)
             } else {
