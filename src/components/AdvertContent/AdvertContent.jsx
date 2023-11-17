@@ -27,14 +27,14 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     useEffect(() => {
         if (advert) {
-            const isAddedToFvrts = getFavorotesID.find(id => advert.id === id);
+            const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
             if (isAddedToFvrts) {
                 setIsFavorite(true)
             } else {
                 setIsFavorite(false)
             };
         }
-    }, [advert, getFavorotesID])
+    }, [advert, id, getFavorotesID])
 
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
