@@ -23,6 +23,9 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
         functionalities
     } = advert;
 
+    console.log('adverts CONTENT : START USE EFFECT')
+
+
     const getFavorotesID = useSelector(selectFavoritiesID)
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -37,6 +40,9 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
         }
     }, [advert, id, getFavorotesID])
 
+    console.log('adverts CONTENT : END USE EFFECT')
+
+
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
     }, functionalities[0]);
@@ -50,6 +56,9 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const handleLearnMoreClick = () => {
         handleOpenModal(advert);
     }
+
+    console.log('adverts CONTENT : END !!!')
+
 
     return (
         <Wrapper>
