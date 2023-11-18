@@ -1,4 +1,4 @@
-import{R as k,d as O,e as W,s as i,j as e,a as A,r as g,g as R,h as P,i as $,k as E,o as B}from"./index-c4b3e7ea.js";import{B as M}from"./Button-2747d2e8.js";function N(t=k){const s=t===k?O:W(t);return function(){const{store:n}=s();return n}}const z=N();function U(t=k){const s=t===k?z:N(t);return function(){return s().dispatch}}const F=U(),H=i.div`
+import{R as k,d as O,e as W,s as i,j as e,a as A,r as g,g as R,h as P,i as $,k as E,o as B}from"./index-c2ddfb3d.js";import{B as M}from"./Button-d8a2b030.js";function N(t=k){const s=t===k?O:W(t);return function(){const{store:n}=s();return n}}const z=N();function U(t=k){const s=t===k?z:N(t);return function(){return s().dispatch}}const F=U(),H=i.div`
 display: flex;
 width: 274px;
 height: 426px;
