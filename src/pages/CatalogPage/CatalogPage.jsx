@@ -40,10 +40,10 @@ const CatalogPage = () => {
     console.log('TEST DATA :', dataAdverts)
 
 
-    const onLoadMore = async () => {
-        dispatch(setCurrentPage(currentPage + 1));
-    }
-    const isLastPage = dataAdverts?.length < currentPage * perPage;
+    // const onLoadMore = async () => {
+    //     dispatch(setCurrentPage(currentPage + 1));
+    // }
+    // const isLastPage = dataAdverts?.length < currentPage * perPage;
 
     console.log('last useEffect ')
 
@@ -53,7 +53,7 @@ const CatalogPage = () => {
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
-                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
+                    {/* {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />} */}
                 </>)
             }
             {/* {dataAdverts.length > 0

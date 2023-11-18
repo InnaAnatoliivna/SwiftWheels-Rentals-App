@@ -7,6 +7,8 @@ justify-content: center;
 flex-wrap: wrap;
 gap: 20px;
 margin-bottom: 100px;
+
+
 `;
 
 export const Wrapper = styled.li`

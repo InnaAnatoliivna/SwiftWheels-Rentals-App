@@ -11,6 +11,7 @@ import defaultImage from '../../images/Car-Hire-Online.jpg'
 // import Loading from '../Loading/Loading'
 
 const AdvertContent = ({ advert, handleOpenModal }) => {
+
     const {
         img,
         make,
