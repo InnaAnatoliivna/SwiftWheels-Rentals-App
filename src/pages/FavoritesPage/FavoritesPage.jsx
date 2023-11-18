@@ -3,7 +3,7 @@ import Container from '../../components/Container/Container'
 import { useSelector } from 'react-redux'
 import { selectFavoritiesID } from '../../redux/selectors'
 import AdvertsList from '../../components/AdvertsList/AdvertsList'
-import LoadMoreButton from '../../components/LoadMore/LoadMore'
+// import LoadMoreButton from '../../components/LoadMore/LoadMore'
 import { fetchAllAdverts } from '../../redux/operations'
 import Button from '../../components/Button/Button'
 import { Wrapper } from './FavoritesPage.styled'
@@ -14,7 +14,7 @@ const FavoritesPage = () => {
     const navigate = useNavigate();
     const getFavoritiesId = useSelector(selectFavoritiesID);
     const [getFavorites, setGetFavorites] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    // const [currentPage, setCurrentPage] = useState(1);
     const perPage = 12;
 
     useEffect(() => {
@@ -34,10 +34,10 @@ const FavoritesPage = () => {
     }, [getFavoritiesId, currentPage]);
 
 
-    const onLoadMore = () => {
-        setCurrentPage(prevPage => prevPage + 1);
-    };
-    const isLastPage = getFavorites.length < currentPage * perPage;
+    // const onLoadMore = () => {
+    //     setCurrentPage(prevPage => prevPage + 1);
+    // };
+    // const isLastPage = getFavorites.length < currentPage * perPage;
 
 
     return (
@@ -48,7 +48,7 @@ const FavoritesPage = () => {
                     <p>Unfortunately, the list is empty.</p>
                     <Button onClick={() => navigate('/catalog')}>Back to the catalog</Button>
                 </Wrapper>)}
-            {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
+            {/* {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />} */}
         </Container>
     )
 };
