@@ -26,7 +26,7 @@ const CatalogPage = () => {
         const getDataAdverts = async () => {
             try {
                 await dispatch(fetchLimitedAdverts())
-                console.log('TEST DATA :', dataAdverts)
+                // console.log('TEST DATA :', dataAdverts)
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
@@ -49,12 +49,19 @@ const CatalogPage = () => {
 
     return (
         <Container>
-            {isLoading
+            {/* {isLoading
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
                     {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
+            } */}
+            {dataAdverts.length > 0
+                ? (<>
+                    <AdvertsList adverts={dataAdverts} />
+                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
+                </>)
+                : < Loading />
             }
         </Container>
     )
