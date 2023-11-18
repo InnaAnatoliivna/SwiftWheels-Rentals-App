@@ -37,6 +37,8 @@ const CatalogPage = () => {
     }, [dispatch, currentPage]);
 
     console.log('after useEffect ')
+    console.log('TEST DATA :', dataAdverts)
+
 
     const onLoadMore = async () => {
         dispatch(setCurrentPage(currentPage + 1));
