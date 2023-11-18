@@ -33,12 +33,14 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     useEffect(() => {
         // if (advert && getFavorotesID.length > 0) {
         // const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
-        const isAddedToFvrts = getFavorotesID && getFavorotesID.length > 0 && getFavorotesID.find(farId => id === farId);
+        const isAddedToFvrts = getFavorotesID.length > 0 && getFavorotesID.find(favId => id === favId);
+        console.log('ISaDDfAVVVV :', isAddedToFvrts)
         if (isAddedToFvrts) {
             setIsFavorite(true)
-        } else {
-            setIsFavorite(false)
-        };
+        }
+        // else {
+        //     setIsFavorite(false)
+        // };
         // }
     }, [advert, id, getFavorotesID])
 
