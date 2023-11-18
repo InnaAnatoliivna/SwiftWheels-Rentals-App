@@ -42,11 +42,16 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     console.log('adverts CONTENT : END USE EFFECT')
 
+    console.log('TEST REDUCE : ', functionalities)
 
-    const shortestFunctionality = functionalities.reduce((shortest, current) => {
+    // const shortestFunctionality = functionalities.reduce((shortest, current) => {
+    //     return current.length < shortest.length ? current : shortest;
+    // }, functionalities[0]);
+    const shortestFunctionality = functionalities ? functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
-    }, functionalities[0]);
-    // console.log(shortestFunctionality)
+    }, functionalities[0]) : '';
+
+    console.log(shortestFunctionality)
 
     const addressString = advert.address;
     const addressParts = addressString.split(',').map(part => part.trim());
