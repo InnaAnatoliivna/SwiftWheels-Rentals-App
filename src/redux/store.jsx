@@ -12,7 +12,6 @@ import {
 import { advertsReducer } from './reducers/advertsSlice'
 import { filtersReducer } from './reducers/filterSlice'
 import { favoritiesReducer } from './reducers/favoritiesSlice'
-// import paginationReducer from './reducers/paginationSlice'
 import { modalReducer } from './reducers/modalSlice'
 
 export const LOCAL_STORAGE_KEY = 'root';
@@ -31,7 +30,6 @@ export const store = configureStore({
         adverts: advertsReducer,
         favorities: persistedFavoritiesReducer,
         filter: filtersReducer,
-        // pagination: paginationReducer,
         modal: modalReducer
     },
     middleware: getDefaultMiddleware =>

@@ -16,7 +16,7 @@ import LoadMoreButton from '../../components/LoadMore/LoadMore'
 const CatalogPage = () => {
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
-    const isLoading = useSelector(selectLoadingAdverts);
+    // const isLoading = useSelector(selectLoadingAdverts);
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
 
@@ -33,7 +33,14 @@ const CatalogPage = () => {
             console.log('CATALOG PAGE I AM uSE EFFECT ')
 
         };
-        getDataAdverts();
+        // getDataAdverts();
+        getDataAdverts()
+            .then(() => {
+                console.log('CATALOG PAGE I AM uSE EFFECT ');
+            })
+            .catch((error) => {
+                console.error("Error in getDataAdverts promise chain: ", error);
+            });
     }, [dispatch, currentPage]);
 
     console.log('after useEffect ')
