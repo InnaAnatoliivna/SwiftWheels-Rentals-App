@@ -1,4 +1,4 @@
-import{s as t,u as i,j as e,C as o}from"./index-c39ffbd3.js";import{B as r}from"./Button-54fb0c19.js";const s="/SwiftWheels-Rentals-App/assets/AdobeStock_86477498-20be7c31.jpg",c=t.div`
+import{s as t,u as i,j as e,C as o}from"./index-b56a9b10.js";import{B as r}from"./Button-70433788.js";const s="/SwiftWheels-Rentals-App/assets/AdobeStock_86477498-20be7c31.jpg",c=t.div`
     position: relative;
     background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
         url(${s});
