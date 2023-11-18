@@ -13,10 +13,14 @@ const AdvertsList = ({ adverts }) => {
     const isOpenModal = useSelector(selectIsOpenModal);
     const [currentAdverts, setCurrentAdverts] = useState(null)
 
+    console.log('adverts LIST : start')
+
     const handleOpenModal = (advert) => {
         dispatch(openModal());
         setCurrentAdverts(advert);
     }
+
+    console.log('adverts LIST : END')
 
 
     return (
