@@ -30,15 +30,15 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        if (advert && getFavorotesID.length > 0) {
-            // const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
-            const isAddedToFvrts = getFavorotesID && getFavorotesID.length > 0 && getFavorotesID.find(farId => id === farId);
-            if (isAddedToFvrts) {
-                setIsFavorite(true)
-            } else {
-                setIsFavorite(false)
-            };
-        }
+        // if (advert && getFavorotesID.length > 0) {
+        // const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
+        const isAddedToFvrts = getFavorotesID && getFavorotesID.length > 0 && getFavorotesID.find(farId => id === farId);
+        if (isAddedToFvrts) {
+            setIsFavorite(true)
+        } else {
+            setIsFavorite(false)
+        };
+        // }
     }, [advert, id, getFavorotesID])
 
     console.log('adverts CONTENT : END USE EFFECT')
