@@ -53,10 +53,15 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     console.log(shortestFunctionality)
 
-    const addressString = advert.address;
+    // const addressString = advert.address;
+    // const addressParts = addressString.split(',').map(part => part.trim());
+    // const city = addressParts[1];
+    // const country = addressParts[2];
+    const addressString = advert.address || '';
     const addressParts = addressString.split(',').map(part => part.trim());
-    const city = addressParts[1];
-    const country = addressParts[2];
+    const city = addressParts[1] || '';
+    const country = addressParts[2] || '';
+
 
     const handleLearnMoreClick = () => {
         handleOpenModal(advert);
