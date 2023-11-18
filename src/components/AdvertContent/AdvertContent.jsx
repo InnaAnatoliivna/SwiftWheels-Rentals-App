@@ -40,7 +40,7 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const shortestFunctionality = functionalities.reduce((shortest, current) => {
         return current.length < shortest.length ? current : shortest;
     }, functionalities[0]);
-    console.log(shortestFunctionality)
+    // console.log(shortestFunctionality)
 
     const addressString = advert.address;
     const addressParts = addressString.split(',').map(part => part.trim());
