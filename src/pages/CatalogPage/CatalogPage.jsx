@@ -29,6 +29,8 @@ const CatalogPage = () => {
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
+            console.log('CATALOG PAGE I AM uSE EFFECT ')
+
         };
         getDataAdverts();
     }, [dispatch, currentPage]);
