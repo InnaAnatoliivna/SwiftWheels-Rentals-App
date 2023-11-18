@@ -13,7 +13,7 @@ const AdvertsList = ({ adverts }) => {
     const isOpenModal = useSelector(selectIsOpenModal);
     const [currentAdverts, setCurrentAdverts] = useState(null)
 
-    console.log('adverts LIST : start')
+    console.log('adverts LIST : ', adverts)
 
     const handleOpenModal = (advert) => {
         dispatch(openModal());
@@ -25,7 +25,7 @@ const AdvertsList = ({ adverts }) => {
 
     return (
         <Flex>
-            {adverts.map(item => {
+            {adverts?.map(item => {
                 return (
                     <Wrapper key={item.id}>
                         <CardAdverts>
