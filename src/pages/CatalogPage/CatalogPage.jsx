@@ -10,15 +10,15 @@ import {
 } from '../../redux/selectors'
 import { fetchLimitedAdverts } from '../../redux/operations'
 import Loading from '../../components/Loading/Loading'
-import { setCurrentPage } from '../../redux/reducers/advertsSlice'
-import LoadMoreButton from '../../components/LoadMore/LoadMore'
+// import { setCurrentPage } from '../../redux/reducers/advertsSlice'
+// import LoadMoreButton from '../../components/LoadMore/LoadMore'
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
     const isLoading = useSelector(selectLoadingAdverts);
     const currentPage = useSelector(selectCurrentPage);
-    const perPage = useSelector(selectPerPage);
+    // const perPage = useSelector(selectPerPage);
 
     console.log('before useEffect ')
 
