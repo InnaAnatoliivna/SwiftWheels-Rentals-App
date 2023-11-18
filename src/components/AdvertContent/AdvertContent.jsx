@@ -49,9 +49,12 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     // const shortestFunctionality = functionalities.reduce((shortest, current) => {
     //     return current.length < shortest.length ? current : shortest;
     // }, functionalities[0]);
-    const shortestFunctionality = functionalities ? functionalities.reduce((shortest, current) => {
-        return current.length < shortest.length ? current : shortest;
-    }, functionalities[0]) : '';
+    const shortestFunctionality = functionalities && Array.isArray(functionalities)
+        ? functionalities.reduce((shortest, current) => {
+            return current.length < shortest.length ? current : shortest;
+        }, functionalities[0])
+        : '';
+
 
     console.log(shortestFunctionality)
 
