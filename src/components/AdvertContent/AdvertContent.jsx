@@ -28,16 +28,17 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
 
     const getFavorotesID = useSelector(selectFavoritiesID)
-    const [isFavorite, setIsFavorite] = useState(false);
+    // const [isFavorite, setIsFavorite] = useState(false);
+    const isFavorite = false;
 
     useEffect(() => {
         // if (advert && getFavorotesID.length > 0) {
         // const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
-        const isAddedToFvrts = getFavorotesID.length > 0 && getFavorotesID.find(favId => id === favId);
-        console.log('ISaDDfAVVVV :', isAddedToFvrts)
-        if (isAddedToFvrts) {
-            setIsFavorite(true)
-        }
+        // const isAddedToFvrts = getFavorotesID.length > 0 && getFavorotesID.find(favId => id === favId);
+        // console.log('ISaDDfAVVVV :', isAddedToFvrts)
+        // if (isAddedToFvrts) {
+        //     setIsFavorite(true)
+        // }
         // else {
         //     setIsFavorite(false)
         // };
