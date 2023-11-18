@@ -49,20 +49,20 @@ const CatalogPage = () => {
 
     return (
         <Container>
-            {/* {isLoading
+            {isLoading
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
                     {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
-            } */}
-            {dataAdverts.length > 0
+            }
+            {/* {dataAdverts.length > 0
                 ? (<>
                     <AdvertsList adverts={dataAdverts} />
                     {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
                 : < Loading />
-            }
+            } */}
         </Container>
     )
 }
