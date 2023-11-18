@@ -1,4 +1,4 @@
-import{s as g,u as d,a as p,r as a,j as e,C as h,b as v}from"./index-ac6df17c.js";import{c as x,A as f}from"./AdvertsList-f561f74b.js";import{B as u}from"./Button-05fbbac4.js";const m=g.div`
+import{s as g,u as d,a as p,r as a,j as e,C as h,b as v}from"./index-d7cdf673.js";import{c as x,A as f}from"./AdvertsList-7ad0112b.js";import{B as u}from"./Button-7244c090.js";const m=g.div`
     height: 100vh;
 
     /* padding: 200px 0; */
