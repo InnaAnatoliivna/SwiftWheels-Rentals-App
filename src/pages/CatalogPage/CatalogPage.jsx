@@ -26,6 +26,7 @@ const CatalogPage = () => {
         const getDataAdverts = async () => {
             try {
                 await dispatch(fetchLimitedAdverts())
+                console.log(dataAdverts)
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
