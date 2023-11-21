@@ -1,4 +1,3 @@
-import React from 'react'
 import { nanoid } from 'nanoid'
 import { ContentsWrapper, FlexList, Item, LinkTel, WrappImg } from './ModalWindowContent.styled'
 

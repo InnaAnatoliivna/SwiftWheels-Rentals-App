@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import sprite from '../../icon/icon-sprite.svg'
 import Backdrop from '../Backdrop/Backdrop'
@@ -6,11 +6,9 @@ import { CloseButton, Modal, WrapIcon } from './ModalWindow.styled'
 import ModalWindowContent from '../ModalWindowContent/ModalWindowContent'
 import { closeModal } from '../../redux/reducers/modalSlice'
 import { useDispatch } from 'react-redux'
-// import { selectIsOpenModal } from '../../redux/selectors'
 
 const ModalWindow = ({ advert }) => {
     const dispatch = useDispatch();
-    // const isOpenModal = useSelector(selectIsOpenModal);
 
     useEffect(() => {
         const closeESC = (e) => {
@@ -23,7 +21,6 @@ const ModalWindow = ({ advert }) => {
     }, [dispatch]);
 
     useEffect(() => {
-        // if (isOpenModal)
         document.body.style.overflow = 'hidden';
         return () => {
             document.body.style.overflow = 'visible';

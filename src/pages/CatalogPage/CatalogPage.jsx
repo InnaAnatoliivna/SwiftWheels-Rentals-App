@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Container from '../../components/Container/Container'
 import AdvertsList from '../../components/AdvertsList/AdvertsList'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,42 +19,39 @@ const CatalogPage = () => {
     const isLoading = useSelector(selectLoadingAdverts);
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
-
-    console.log('before useEffect ')
+    const [loadingMore, setLoadingMore] = useState(false);
 
     useEffect(() => {
         const getDataAdverts = async () => {
             try {
+                setLoadingMore(true);
                 await dispatch(fetchLimitedAdverts())
+                setLoadingMore(false);
                 // console.log('TEST DATA :', dataAdverts)
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
+                setLoadingMore(false);
             }
         };
         getDataAdverts();
     }, [dispatch, currentPage]);
 
-    const onLoadMore = async () => {
+    console.log('part12', dataAdverts)
+
+    const onLoadMore = () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
     const isLastPage = dataAdverts?.length < currentPage * perPage;
 
     return (
         <Container>
-            {isLoading
+            {isLoading || loadingMore
                 ? <Loading />
                 : (<>
                     <AdvertsList adverts={dataAdverts} />
                     {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                 </>)
             }
-            {/* {dataAdverts.length > 0
-                ? (<>
-                    <AdvertsList adverts={dataAdverts} />
-                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
-                </>)
-                : < Loading />
-            } */}
         </Container>
     )
 }
