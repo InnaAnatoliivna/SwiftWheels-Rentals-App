@@ -26,38 +26,25 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
 
     const getFavorotesID = useSelector(selectFavoritiesID)
     const [isFavorite, setIsFavorite] = useState(false);
-    // const isFavorite = true;
-    console.log(getFavorotesID)
 
     useEffect(() => {
-        // if ( getFavorotesID.length > 0) {
-        // const isAddedToFvrts = getFavorotesID.find(favId => id === favId);
         const isAddedToFvrts = getFavorotesID.length > 0
             ? getFavorotesID.some(favId => id === favId)
             : false;
-        console.log('ISaDDfAVVVV :', isAddedToFvrts)
         if (isAddedToFvrts) {
             setIsFavorite(true)
         }
         else {
             setIsFavorite(false)
         };
-        // }
     }, [id, getFavorotesID])
 
-    // const shortestFunctionality = functionalities.reduce((shortest, current) => {
-    //     return current.length < shortest.length ? current : shortest;
-    // }, functionalities[0]);
     const shortestFunctionality = functionalities && Array.isArray(functionalities)
         ? functionalities.reduce((shortest, current) => {
             return current.length < shortest.length ? current : shortest;
         }, functionalities[0])
         : '';
 
-    // const addressString = advert.address;
-    // const addressParts = addressString.split(',').map(part => part.trim());
-    // const city = addressParts[1];
-    // const country = addressParts[2];
     const addressString = advert.address || '';
     const addressParts = addressString.split(',').map(part => part.trim());
     const city = addressParts[1] || '';
