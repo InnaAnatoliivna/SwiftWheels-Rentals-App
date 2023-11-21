@@ -34,8 +34,6 @@ const advertsSlice = createSlice({
             .addCase(fetchLimitedAdverts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                // console.log('adverts-fullfield :', action.payload);
-                // state.items = action.payload;
                 state.items.push(...action.payload);
                 // action.payload.forEach(newAdvert => {
                 //     const existingAdvertIndex = state.items.findIndex(existingAdvert => existingAdvert.id === newAdvert.id);
@@ -45,7 +43,6 @@ const advertsSlice = createSlice({
                 //         state.items.push(newAdvert);
                 //     }
                 // });
-
             })
     }
 });

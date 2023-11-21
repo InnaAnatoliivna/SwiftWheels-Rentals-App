@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     height: 100vh;
+    position: relative;
 
     /* padding: 200px 0; */
     display: flex;
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 28px;
-     p {
+    p {
         color: var(--color-text);
         width: 100%;
         font-size: 40px;

@@ -8,7 +8,7 @@ import { fetchAllAdverts } from '../../redux/operations'
 import Button from '../../components/Button/Button'
 import { Wrapper } from './FavoritesPage.styled'
 import { useNavigate } from 'react-router-dom'
-import Loading from '../../components/Loading/Loading'
+import Loader from '../../components/Loading/Loading'
 
 const FavoritesPage = () => {
 
@@ -48,7 +48,7 @@ const FavoritesPage = () => {
     return (
         <Container>
             {loadingMore
-                ? <Loading />
+                ? <Loader />
                 : (<>
                     {
                         getFavorites.length > 0

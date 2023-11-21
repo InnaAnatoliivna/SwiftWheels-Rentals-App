@@ -9,9 +9,10 @@ import {
     selectPerPage,
 } from '../../redux/selectors'
 import { fetchLimitedAdverts } from '../../redux/operations'
-import Loading from '../../components/Loading/Loading'
+import Loader from '../../components/Loading/Loading'
 import { setCurrentPage } from '../../redux/reducers/advertsSlice'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
+import { ParentWrapp } from './CatalogPage.styled'
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
@@ -45,13 +46,15 @@ const CatalogPage = () => {
 
     return (
         <Container>
-            {isLoading || loadingMore
-                ? <Loading />
-                : (<>
-                    <AdvertsList adverts={dataAdverts} />
-                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
-                </>)
-            }
+            <ParentWrapp>
+                {isLoading || loadingMore
+                    ? <Loader />
+                    : (<>
+                        <AdvertsList adverts={dataAdverts} />
+                        {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
+                    </>)
+                }
+            </ParentWrapp>
         </Container>
     )
 }
