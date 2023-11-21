@@ -24,30 +24,26 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
         functionalities
     } = advert;
 
-    console.log('adverts CONTENT : START USE EFFECT')
-
-
     const getFavorotesID = useSelector(selectFavoritiesID)
-    // const [isFavorite, setIsFavorite] = useState(false);
-    const isFavorite = false;
+    const [isFavorite, setIsFavorite] = useState(false);
+    // const isFavorite = true;
+    console.log(getFavorotesID)
 
     useEffect(() => {
-        // if (advert && getFavorotesID.length > 0) {
-        // const isAddedToFvrts = getFavorotesID.find(farId => id === farId);
-        // const isAddedToFvrts = getFavorotesID.length > 0 && getFavorotesID.find(favId => id === favId);
-        // console.log('ISaDDfAVVVV :', isAddedToFvrts)
-        // if (isAddedToFvrts) {
-        //     setIsFavorite(true)
+        // if ( getFavorotesID.length > 0) {
+        // const isAddedToFvrts = getFavorotesID.find(favId => id === favId);
+        const isAddedToFvrts = getFavorotesID.length > 0
+            ? getFavorotesID.some(favId => id === favId)
+            : false;
+        console.log('ISaDDfAVVVV :', isAddedToFvrts)
+        if (isAddedToFvrts) {
+            setIsFavorite(true)
+        }
+        else {
+            setIsFavorite(false)
+        };
         // }
-        // else {
-        //     setIsFavorite(false)
-        // };
-        // }
-    }, [advert, id, getFavorotesID])
-
-    console.log('adverts CONTENT : END USE EFFECT')
-
-    console.log('TEST REDUCE : ', functionalities)
+    }, [id, getFavorotesID])
 
     // const shortestFunctionality = functionalities.reduce((shortest, current) => {
     //     return current.length < shortest.length ? current : shortest;
@@ -57,9 +53,6 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
             return current.length < shortest.length ? current : shortest;
         }, functionalities[0])
         : '';
-
-
-    console.log(shortestFunctionality)
 
     // const addressString = advert.address;
     // const addressParts = addressString.split(',').map(part => part.trim());
@@ -74,9 +67,6 @@ const AdvertContent = ({ advert, handleOpenModal }) => {
     const handleLearnMoreClick = () => {
         handleOpenModal(advert);
     }
-
-    console.log('adverts CONTENT : END !!!')
-
 
     return (
         <Wrapper>

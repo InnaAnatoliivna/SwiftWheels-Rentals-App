@@ -30,22 +30,14 @@ const CatalogPage = () => {
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
             }
-            console.log('CATALOG PAGE I AM uSE EFFECT ')
-
         };
         getDataAdverts();
     }, [dispatch, currentPage]);
-
-    console.log('after useEffect ')
-    console.log('TEST DATA :', dataAdverts)
-
 
     const onLoadMore = async () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
     const isLastPage = dataAdverts?.length < currentPage * perPage;
-
-    console.log('last useEffect ')
 
     return (
         <Container>
