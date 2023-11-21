@@ -13,6 +13,7 @@ import Loader from '../../components/Loading/Loading'
 import { setCurrentPage } from '../../redux/reducers/advertsSlice'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
 import { ParentWrapp } from './CatalogPage.styled'
+import DropdownMake from '../../components/DropdownMake/DropdownMake'
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const CatalogPage = () => {
                 {isLoading || loadingMore
                     ? <Loader />
                     : (<>
+                        <DropdownMake />
                         <AdvertsList adverts={dataAdverts} />
                         {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                     </>)
