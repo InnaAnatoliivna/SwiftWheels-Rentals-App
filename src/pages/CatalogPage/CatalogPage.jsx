@@ -14,11 +14,15 @@ import { setCurrentPage } from '../../redux/reducers/advertsSlice'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
 import { ParentWrapp } from './CatalogPage.styled'
 import DropdownMake from '../../components/DropdownMake/DropdownMake'
+import { selectFilterMakes } from "../../redux/selectors";
+
 
 const CatalogPage = () => {
+
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
     const isLoading = useSelector(selectLoadingAdverts);
+    const selectMakes = useSelector(selectFilterMakes);
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
     const [loadingMore, setLoadingMore] = useState(false);
@@ -29,7 +33,6 @@ const CatalogPage = () => {
                 setLoadingMore(true);
                 await dispatch(fetchLimitedAdverts())
                 setLoadingMore(false);
-                // console.log('TEST DATA :', dataAdverts)
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
                 setLoadingMore(false);
@@ -38,12 +41,15 @@ const CatalogPage = () => {
         getDataAdverts();
     }, [dispatch, currentPage]);
 
-    console.log('part12', dataAdverts)
+    const renderAdverts = selectMakes.length > 0
+        ? dataAdverts.filter(advert => selectMakes.includes(advert.make))
+        : dataAdverts;
 
     const onLoadMore = () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
     const isLastPage = dataAdverts?.length < currentPage * perPage;
+
 
     return (
         <Container>
@@ -52,7 +58,7 @@ const CatalogPage = () => {
                     ? <Loader />
                     : (<>
                         <DropdownMake />
-                        <AdvertsList adverts={dataAdverts} />
+                        <AdvertsList adverts={renderAdverts} />
                         {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                     </>)
                 }

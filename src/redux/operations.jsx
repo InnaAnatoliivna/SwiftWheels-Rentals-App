@@ -4,7 +4,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://654e9f03cbc3253557430564.mockapi.io';
 
-
 /*
  * GET @ /adverts/fetchAll
  */

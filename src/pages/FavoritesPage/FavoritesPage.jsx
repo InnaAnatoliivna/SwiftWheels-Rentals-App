@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Container from '../../components/Container/Container'
 import { useSelector } from 'react-redux'
-import { selectFavoritiesID } from '../../redux/selectors'
+import { selectFavoritiesID, selectFilterMakes } from '../../redux/selectors'
 import AdvertsList from '../../components/AdvertsList/AdvertsList'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
 import { fetchAllAdverts } from '../../redux/operations'
@@ -9,15 +9,19 @@ import Button from '../../components/Button/Button'
 import { Wrapper } from './FavoritesPage.styled'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loading/Loading'
+import DropdownMake from '../../components/DropdownMake/DropdownMake'
 
 const FavoritesPage = () => {
 
     const navigate = useNavigate();
     const getFavoritiesId = useSelector(selectFavoritiesID);
+    const selectMakes = useSelector(selectFilterMakes);
     const [getFavorites, setGetFavorites] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const perPage = 12;
     const [loadingMore, setLoadingMore] = useState(false);
+
+    const [favoriteMakes, setFavoriteMakes] = useState(null);
 
     useEffect(() => {
         const getAllAdverts = async () => {
@@ -32,12 +36,30 @@ const FavoritesPage = () => {
             } catch (error) {
                 setLoadingMore(false);
                 console.error("Error fetching adverts: ", error.message);
-                throw error;
             }
         };
         getAllAdverts();
     }, [getFavoritiesId, currentPage]);
 
+    // const favoriteMakes = Array.isArray(selectMakes) && selectMakes.length > 0
+    //     ? selectMakes.filter(item => getFavorites.includes(item.make))
+    //     : [];
+
+    // /????????????????????????
+    useEffect(() => {
+        const findFavoriteMakes = Array.isArray(selectMakes) && selectMakes.length > 0
+            ? selectMakes.filter(item => getFavorites.includes(item.make))
+            : null;
+        if (findFavoriteMakes) setFavoriteMakes(findFavoriteMakes);
+    }, []);
+    // this need for rendering in select's - options exist makes on pages. required to do it in DropdownMake.???
+    // /????????????????????????
+
+
+    console.log(favoriteMakes)//-------------
+    const renderAdverts = favoriteMakes
+        ? getFavorites.filter(advert => favoriteMakes.includes(advert.make))
+        : getFavorites;
 
     const onLoadMore = () => {
         setCurrentPage(prevPage => prevPage + 1);
@@ -52,7 +74,10 @@ const FavoritesPage = () => {
                 : (<>
                     {
                         getFavorites.length > 0
-                            ? <AdvertsList adverts={getFavorites} />
+                            ? (<>
+                                <DropdownMake />
+                                <AdvertsList adverts={renderAdverts} />
+                            </>)
                             : (<Wrapper>
                                 <p>Unfortunately, the list is empty.</p>
                                 <Button onClick={() => navigate('/catalog')}>Back to the catalog</Button>

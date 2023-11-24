@@ -34,15 +34,15 @@ const advertsSlice = createSlice({
             .addCase(fetchLimitedAdverts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.items.push(...action.payload);
-                // action.payload.forEach(newAdvert => {
-                //     const existingAdvertIndex = state.items.findIndex(existingAdvert => existingAdvert.id === newAdvert.id);
-                //     if (existingAdvertIndex !== -1) {
-                //         state.items[existingAdvertIndex] = newAdvert;
-                //     } else {
-                //         state.items.push(newAdvert);
-                //     }
-                // });
+                // state.items.push(...action.payload);
+                action.payload.forEach(newAdvert => {
+                    const existingAdvertIndex = state.items.findIndex(existingAdvert => existingAdvert.id === newAdvert.id);
+                    if (existingAdvertIndex !== -1) {
+                        state.items[existingAdvertIndex] = newAdvert;
+                    } else {
+                        state.items.push(newAdvert);
+                    }
+                });
             })
     }
 });
