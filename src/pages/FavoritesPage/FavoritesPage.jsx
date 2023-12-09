@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Container from '../../components/Container/Container'
 import { useSelector } from 'react-redux'
 import { selectFavoritiesID, selectFilterMakes } from '../../redux/selectors'
@@ -21,7 +21,7 @@ const FavoritesPage = () => {
     const perPage = 12;
     const [loadingMore, setLoadingMore] = useState(false);
 
-    const [favoriteMakes, setFavoriteMakes] = useState(null);
+    const [makes, setMakes] = useState(null);
 
     useEffect(() => {
         const getAllAdverts = async () => {
@@ -41,25 +41,42 @@ const FavoritesPage = () => {
         getAllAdverts();
     }, [getFavoritiesId, currentPage]);
 
-    // const favoriteMakes = Array.isArray(selectMakes) && selectMakes.length > 0
-    //     ? selectMakes.filter(item => getFavorites.includes(item.make))
-    //     : [];
 
-    // /????????????????????????
+
     useEffect(() => {
-        const findFavoriteMakes = Array.isArray(selectMakes) && selectMakes.length > 0
-            ? selectMakes.filter(item => getFavorites.includes(item.make))
-            : null;
-        if (findFavoriteMakes) setFavoriteMakes(findFavoriteMakes);
-    }, []);
-    // this need for rendering in select's - options exist makes on pages. required to do it in DropdownMake.???
-    // /????????????????????????
+        const getMakes = Array.from(new Set(getFavorites.map((advert) => advert.make).flat()));
+        setMakes(getMakes);
+    }, [getFavorites]);
 
 
-    console.log(favoriteMakes)//-------------
-    const renderAdverts = favoriteMakes
-        ? getFavorites.filter(advert => favoriteMakes.includes(advert.make))
-        : getFavorites;
+    console.log(selectMakes)//-------------
+    console.log(makes)//-------------
+
+
+    // const renderAdverts = selectMakes
+    //     ? getFavorites.filter(advert => makes.includes(advert.make))
+    //     : getFavorites;
+
+    const [renderAdverts, setRenderAdverts] = useState(getFavorites);
+
+    useEffect(() => {
+        if (selectMakes) {
+            setRenderAdverts(getFavorites.filter(advert => selectMakes.includes(advert.make)))
+        } else if (!selectMakes) {
+            setRenderAdverts(getFavorites)
+        }
+    }, [selectMakes, getFavorites]);
+    // const renderAdverts = useMemo(() => {
+    //     if (selectMakes) {
+    //         return getFavorites.filter(advert => selectMakes.includes(advert.make));
+    //     } else {
+    //         return getFavorites;
+    //     }
+    // }, [selectMakes, getFavorites]);
+
+    console.log(getFavorites)//-------------
+    console.log(renderAdverts)//-------------
+
 
     const onLoadMore = () => {
         setCurrentPage(prevPage => prevPage + 1);
@@ -75,7 +92,7 @@ const FavoritesPage = () => {
                     {
                         getFavorites.length > 0
                             ? (<>
-                                <DropdownMake />
+                                <DropdownMake makes={makes} />
                                 <AdvertsList adverts={renderAdverts} />
                             </>)
                             : (<Wrapper>

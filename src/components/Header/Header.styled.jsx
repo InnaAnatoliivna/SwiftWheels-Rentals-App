@@ -36,7 +36,9 @@ export const LinkLogo = styled(Link)`
     color: var(--color-logo);
     font-size: 24px;
     font-weight: 500;
-    line-height: 1;`;
+    line-height: 1;
+    cursor: pointer;
+`;
 
 export const Wrapper = styled.div`
     display: flex;

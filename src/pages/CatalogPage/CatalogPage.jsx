@@ -57,7 +57,10 @@ const CatalogPage = () => {
                 {isLoading || loadingMore
                     ? <Loader />
                     : (<>
-                        <DropdownMake />
+                        <DropdownMake
+                        // makes={makes} 
+
+                        />
                         <AdvertsList adverts={renderAdverts} />
                         {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                     </>)
