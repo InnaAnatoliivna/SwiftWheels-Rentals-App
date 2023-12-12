@@ -15,6 +15,7 @@ import LoadMoreButton from '../../components/LoadMore/LoadMore'
 import { ParentWrapp } from './CatalogPage.styled'
 import DropdownMake from '../../components/DropdownMake/DropdownMake'
 import { selectFilterMakes } from "../../redux/selectors";
+import { clearMakes } from '../../redux/reducers/filterSlice'
 
 
 const CatalogPage = () => {
@@ -26,6 +27,13 @@ const CatalogPage = () => {
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [filteredAdverts, setRenderAdverts] = useState(null);
+    const [makes, setMakes] = useState(null);
+
+    useEffect(() => {
+        // Call clearFilters when the component mounts to ensure filters are cleared initially
+        dispatch(clearMakes());
+    }, []);
 
     useEffect(() => {
         const getDataAdverts = async () => {
@@ -33,6 +41,8 @@ const CatalogPage = () => {
                 setLoadingMore(true);
                 await dispatch(fetchLimitedAdverts())
                 setLoadingMore(false);
+                // Clear filters when the page changes
+                dispatch(clearMakes());
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
                 setLoadingMore(false);
@@ -41,9 +51,11 @@ const CatalogPage = () => {
         getDataAdverts();
     }, [dispatch, currentPage]);
 
-    const renderAdverts = selectMakes.length > 0
-        ? dataAdverts.filter(advert => selectMakes.includes(advert.make))
-        : dataAdverts;
+    useEffect(() => {
+        const getMakes = Array.from(new Set(dataAdverts.map((advert) => advert.make).flat()));
+        setMakes(getMakes);
+        if (selectMakes) setRenderAdverts(dataAdverts.filter(advert => selectMakes.includes(advert.make)));
+    }, [dataAdverts, selectMakes]);
 
     const onLoadMore = () => {
         dispatch(setCurrentPage(currentPage + 1));
@@ -58,10 +70,9 @@ const CatalogPage = () => {
                     ? <Loader />
                     : (<>
                         <DropdownMake
-                        // makes={makes} 
-
+                            makes={makes}
                         />
-                        <AdvertsList adverts={renderAdverts} />
+                        <AdvertsList adverts={selectMakes.length > 0 ? filteredAdverts : dataAdverts} />
                         {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
                     </>)
                 }

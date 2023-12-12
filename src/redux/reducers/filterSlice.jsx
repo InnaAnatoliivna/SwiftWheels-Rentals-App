@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    makes: [],
-    prices: [],
-    mileages: []
+    makes: []
 };
 
 const filterSlice = createSlice({
@@ -11,18 +9,13 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         updateMakes(state, action) {
-            // return action.payload;
-            // state.makes.push(action.payload)
             state.makes = action.payload;
         },
-        updatePrices(state, action) {
-            state.prices = action.payload;
-        },
-        updateMileages(state, action) {
-            state.mileages = action.payload;
-        },
+        clearMakes(state) {
+            state.makes = []
+        }
     },
 });
 
-export const { updateMakes, updatePrices, updateMileages } = filterSlice.actions;
+export const { updateMakes, clearMakes } = filterSlice.actions;
 export const filtersReducer = filterSlice.reducer;

@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Container from '../../components/Container/Container'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectFavoritiesID, selectFilterMakes } from '../../redux/selectors'
 import AdvertsList from '../../components/AdvertsList/AdvertsList'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
@@ -10,9 +10,11 @@ import { Wrapper } from './FavoritesPage.styled'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/Loading/Loading'
 import DropdownMake from '../../components/DropdownMake/DropdownMake'
+import { clearMakes } from '../../redux/reducers/filterSlice'
 
 const FavoritesPage = () => {
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const getFavoritiesId = useSelector(selectFavoritiesID);
     const selectMakes = useSelector(selectFilterMakes);
@@ -20,8 +22,13 @@ const FavoritesPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const perPage = 12;
     const [loadingMore, setLoadingMore] = useState(false);
-
+    const [filteredAdverts, setRenderAdverts] = useState(null);
     const [makes, setMakes] = useState(null);
+
+    useEffect(() => {
+        // Call clearFilters when the component mounts to ensure filters are cleared initially
+        dispatch(clearMakes());
+    }, []);
 
     useEffect(() => {
         const getAllAdverts = async () => {
@@ -33,50 +40,28 @@ const FavoritesPage = () => {
                     setGetFavorites(showFavorites.slice(0, currentPage * perPage));
                 }
                 setLoadingMore(false);
+                // Clear filters when the page changes
+                dispatch(clearMakes());
             } catch (error) {
                 setLoadingMore(false);
                 console.error("Error fetching adverts: ", error.message);
             }
         };
         getAllAdverts();
-    }, [getFavoritiesId, currentPage]);
-
-
+    }, [getFavoritiesId, currentPage, dispatch]);
 
     useEffect(() => {
         const getMakes = Array.from(new Set(getFavorites.map((advert) => advert.make).flat()));
         setMakes(getMakes);
-    }, [getFavorites]);
+        if (selectMakes) setRenderAdverts(getFavorites.filter(advert => selectMakes.includes(advert.make)));
 
-
-    console.log(selectMakes)//-------------
-    console.log(makes)//-------------
-
-
-    // const renderAdverts = selectMakes
-    //     ? getFavorites.filter(advert => makes.includes(advert.make))
-    //     : getFavorites;
-
-    const [renderAdverts, setRenderAdverts] = useState(getFavorites);
-
-    useEffect(() => {
-        if (selectMakes) {
-            setRenderAdverts(getFavorites.filter(advert => selectMakes.includes(advert.make)))
-        } else if (!selectMakes) {
-            setRenderAdverts(getFavorites)
-        }
     }, [selectMakes, getFavorites]);
-    // const renderAdverts = useMemo(() => {
-    //     if (selectMakes) {
-    //         return getFavorites.filter(advert => selectMakes.includes(advert.make));
-    //     } else {
-    //         return getFavorites;
-    //     }
-    // }, [selectMakes, getFavorites]);
 
-    console.log(getFavorites)//-------------
-    console.log(renderAdverts)//-------------
 
+    // console.log(getFavorites)//-------------
+    // console.log(filteredAdverts)//-------------
+    // console.log(selectMakes)//-------------
+    // console.log(makes)//-------------
 
     const onLoadMore = () => {
         setCurrentPage(prevPage => prevPage + 1);
@@ -93,7 +78,7 @@ const FavoritesPage = () => {
                         getFavorites.length > 0
                             ? (<>
                                 <DropdownMake makes={makes} />
-                                <AdvertsList adverts={renderAdverts} />
+                                <AdvertsList adverts={selectMakes.length > 0 ? filteredAdverts : getFavorites} />
                             </>)
                             : (<Wrapper>
                                 <p>Unfortunately, the list is empty.</p>
