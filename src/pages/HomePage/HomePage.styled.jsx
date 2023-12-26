@@ -14,7 +14,7 @@ export const Section = styled.div`
 export const Wrapper = styled.div`
     height: 100vh;
 
-    h2 {
+    h1 {
         color: var(--color-hero);
         width: 100%;
         /* max-width: 598px; */
@@ -32,4 +32,41 @@ export const Wrapper = styled.div`
     align-items: center;
     align-items: center;
     gap: 28px;
-`
+`;
+
+export const SectionAbout = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 32px;
+margin: 32px 0;
+h3{
+    color: var(--color-accent);
+    font-size: 30px;
+    font-weight: 700;
+}
+p{
+    text-align: center;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 500;
+}
+span{
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 20px;
+}
+ul{
+    display: flex;
+    text-align: center;
+    gap: 12px;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 400;
+    li:not(:last-child) {
+    border-right: 1px solid rgba(18, 20, 23, 0.2);
+    padding-right: 12px;
+}
+}
+`;
