@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    makes: []
+    makes: null
 };
 
 const filterSlice = createSlice({
@@ -12,7 +12,7 @@ const filterSlice = createSlice({
             state.makes = action.payload;
         },
         clearMakes(state) {
-            state.makes = []
+            state.makes = null
         }
     },
 });

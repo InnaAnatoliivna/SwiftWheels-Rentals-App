@@ -72,8 +72,8 @@ const CatalogPage = () => {
                         <DropdownMake
                             makes={makes}
                         />
-                        <AdvertsList adverts={selectMakes.length > 0 ? filteredAdverts : dataAdverts} />
-                        {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
+                        <AdvertsList adverts={selectMakes ? filteredAdverts : dataAdverts} />
+                        {!isLastPage && !selectMakes && <LoadMoreButton onLoadMore={onLoadMore} />}
                     </>)
                 }
             </ParentWrapp>

@@ -18,11 +18,11 @@ export const fetchLimitedAdverts = createAsyncThunk('adverts/fetchAll', async (_
     }
 });
 
-export const fetchAllAdverts = async () => {
-    try {
-        const { data } = await axios.get('/adverts');
-        return data;
-    } catch (error) {
-        console.log(error.message);
-    }
-};
+// export const fetchAllAdverts = async () => {
+//     try {
+//         const { data } = await axios.get('/adverts');
+//         return data;
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// };
