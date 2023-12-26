@@ -1,6 +1,5 @@
-// import styled from 'styled-components'
-// import LoadMoreButton from '../../components/LoadMore/LoadMore'
+import styled from 'styled-components'
 
-// export const LoadMoreStyled = styled(LoadMoreButton)`
-//     margin-bottom: 70px;
-// `
+export const ParentWrapp = styled.div`
+    position: relative;
+`;

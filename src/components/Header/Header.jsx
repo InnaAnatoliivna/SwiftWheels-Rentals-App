@@ -9,9 +9,10 @@ const Header = () => {
             <Container>
                 <Wrapper>
                     <p><LinkLogo to='/'>
-                        <img src={logo} width='150' />
-                        SwiftWheels Rentals</LinkLogo></p>
+                        <img src={logo} width='150' />SwiftWheels Rentals</LinkLogo>
+                    </p>
                     <nav>
+                        <LinkStyled to='/'>Home</LinkStyled>
                         <LinkStyled to='/catalog'>Catalog</LinkStyled>
                         <LinkStyled to='/favorites'>Favorites</LinkStyled>
                     </nav>

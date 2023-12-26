@@ -11,17 +11,12 @@ import { openModal } from '../../redux/reducers/modalSlice'
 const AdvertsList = ({ adverts }) => {
     const dispatch = useDispatch();
     const isOpenModal = useSelector(selectIsOpenModal);
-    const [currentAdverts, setCurrentAdverts] = useState(null)
-
-    console.log('adverts LIST : ', adverts)
+    const [currentAdverts, setCurrentAdverts] = useState(null);
 
     const handleOpenModal = (advert) => {
         dispatch(openModal());
         setCurrentAdverts(advert);
     }
-
-    console.log('adverts LIST : END')
-
 
     return (
         <Flex>

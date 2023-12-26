@@ -9,17 +9,31 @@ import {
     selectPerPage,
 } from '../../redux/selectors'
 import { fetchLimitedAdverts } from '../../redux/operations'
-import Loading from '../../components/Loading/Loading'
+import Loader from '../../components/Loading/Loading'
 import { setCurrentPage } from '../../redux/reducers/advertsSlice'
 import LoadMoreButton from '../../components/LoadMore/LoadMore'
+import { ParentWrapp } from './CatalogPage.styled'
+import DropdownMake from '../../components/DropdownMake/DropdownMake'
+import { selectFilterMakes } from "../../redux/selectors";
+import { clearMakes } from '../../redux/reducers/filterSlice'
+
 
 const CatalogPage = () => {
+
     const dispatch = useDispatch();
     const dataAdverts = useSelector(selectAdverts);
     const isLoading = useSelector(selectLoadingAdverts);
+    const selectMakes = useSelector(selectFilterMakes);
     const currentPage = useSelector(selectCurrentPage);
     const perPage = useSelector(selectPerPage);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [filteredAdverts, setRenderAdverts] = useState(null);
+    const [makes, setMakes] = useState(null);
+
+    useEffect(() => {
+        // Call clearFilters when the component mounts to ensure filters are cleared initially
+        dispatch(clearMakes());
+    }, []);
 
     useEffect(() => {
         const getDataAdverts = async () => {
@@ -27,7 +41,8 @@ const CatalogPage = () => {
                 setLoadingMore(true);
                 await dispatch(fetchLimitedAdverts())
                 setLoadingMore(false);
-                // console.log('TEST DATA :', dataAdverts)
+                // Clear filters when the page changes
+                dispatch(clearMakes());
             } catch (error) {
                 console.error("Error fetching adverts: ", error);
                 setLoadingMore(false);
@@ -36,22 +51,32 @@ const CatalogPage = () => {
         getDataAdverts();
     }, [dispatch, currentPage]);
 
-    console.log('part12', dataAdverts)
+    useEffect(() => {
+        const getMakes = Array.from(new Set(dataAdverts.map((advert) => advert.make).flat()));
+        setMakes(getMakes);
+        if (selectMakes) setRenderAdverts(dataAdverts.filter(advert => selectMakes.includes(advert.make)));
+    }, [dataAdverts, selectMakes]);
 
     const onLoadMore = () => {
         dispatch(setCurrentPage(currentPage + 1));
     }
     const isLastPage = dataAdverts?.length < currentPage * perPage;
 
+
     return (
         <Container>
-            {isLoading || loadingMore
-                ? <Loading />
-                : (<>
-                    <AdvertsList adverts={dataAdverts} />
-                    {!isLastPage && <LoadMoreButton onLoadMore={onLoadMore} />}
-                </>)
-            }
+            <ParentWrapp>
+                {isLoading || loadingMore
+                    ? <Loader />
+                    : (<>
+                        <DropdownMake
+                            makes={makes}
+                        />
+                        <AdvertsList adverts={selectMakes ? filteredAdverts : dataAdverts} />
+                        {!isLastPage && !selectMakes && <LoadMoreButton onLoadMore={onLoadMore} />}
+                    </>)
+                }
+            </ParentWrapp>
         </Container>
     )
 }

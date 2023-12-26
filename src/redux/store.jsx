@@ -19,8 +19,7 @@ export const LOCAL_STORAGE_KEY = 'root';
 const persistConfig = {
     key: LOCAL_STORAGE_KEY,
     storage,
-    // whitelist: ['items'],
-    whitelist: ['favorities'],
+    whitelist: ['favorities', 'items'],
 };
 
 const persistedFavoritiesReducer = persistReducer(persistConfig, favoritiesReducer);

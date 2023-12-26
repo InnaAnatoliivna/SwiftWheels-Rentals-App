@@ -8,7 +8,6 @@ import AddToFavoritesButton from '../AddToFavoritesButton/AddToFavoritesButton'
 import defaultImage from '../../images/Car-Hire-Online.jpg'
 // import { useSelector } from 'react-redux'
 // import { selectLoadingAdverts } from '../../redux/selectors'
-// import Loading from '../Loading/Loading'
 
 const AdvertContent = ({ advert, handleOpenModal }) => {
 

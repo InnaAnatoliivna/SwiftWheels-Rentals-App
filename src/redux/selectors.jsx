@@ -14,8 +14,7 @@ export const selectFavoritiesID = state => state.favorities.favorities;
 
 // filterSlice
 
-export const selectFilter = state => state.filter;
-
+export const selectFilterMakes = state => state.filter.makes;
 
 // modal
 
