@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { updateMakes } from "../../redux/reducers/filterSlice";
+import { Dropdown, Label, Select } from "./DropdownMake.styled";
 
 const DropdownMake = ({ makes }) => {
     const dispatch = useDispatch();
@@ -10,9 +11,9 @@ const DropdownMake = ({ makes }) => {
     };
 
     return (
-        <div>
-            <label htmlFor="makeDropdown">Car brand</label>
-            <select
+        <Dropdown>
+            <Label htmlFor="makeDropdown">Car brand</Label>
+            <Select
                 id="makeDropdown"
                 onChange={handleMakeChange}
             >
@@ -24,8 +25,8 @@ const DropdownMake = ({ makes }) => {
                         </option>
                     )))}
 
-            </select>
-        </div>
+            </Select>
+        </Dropdown>
     )
 }
 

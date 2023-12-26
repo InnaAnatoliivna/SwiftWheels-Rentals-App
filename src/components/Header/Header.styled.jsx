@@ -9,9 +9,9 @@ export const Section = styled.div`
 `;
 
 export const LinkStyled = styled(NavLink)`
-    padding: 24px 8px;
+    padding: 26px 8px;
     color: var(--color-hero);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.2;
     transition: color linear 500ms, box-shadow linear 500ms;
@@ -29,7 +29,7 @@ export const LinkLogo = styled(Link)`
     align-items: center;
     text-decoration: none;
     color: var(--color-logo);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 1;
     cursor: pointer;
